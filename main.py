@@ -58,5 +58,27 @@ def show_drinks():
 MENU.append(("Меню напитков", show_drinks))
 
 
+# ===== US-3. Добавить напиток в заказ =====
+order = []  # позиции заказа: (напиток, цена, количество)
+
+
+def add_to_order():
+    show_drinks()
+    number = ask_int("Номер напитка: ")
+    if number < 1 or number > len(DRINKS):
+        print("Нет такого напитка")
+        return
+    count = ask_int("Количество: ")
+    if count <= 0:
+        print("Количество должно быть больше 0")
+        return
+    name, price = DRINKS[number - 1]
+    order.append((name, price, count))
+    print(f"Добавлено: {name} x {count}")
+
+
+MENU.append(("Добавить в заказ", add_to_order))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
