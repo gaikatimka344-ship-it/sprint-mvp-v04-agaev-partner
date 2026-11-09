@@ -80,5 +80,25 @@ def add_to_order():
 MENU.append(("Добавить в заказ", add_to_order))
 
 
+# ===== US-4. Сумма заказа =====
+def order_sum():
+    total = 0
+    for name, price, count in order:
+        total = total + price * count
+    return total
+
+
+def show_order_sum():
+    if len(order) == 0:
+        print("Заказ пуст")
+        return
+    for name, price, count in order:
+        print(f"{name} x {count} = {price * count} руб.")
+    print(f"Итого: {order_sum()} руб.")
+
+
+MENU.append(("Сумма заказа", show_order_sum))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
