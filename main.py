@@ -115,5 +115,30 @@ def pay_with_discount():
 MENU.append(("К оплате (со скидкой)", pay_with_discount))
 
 
+# ===== US-6. Печать чека =====
+order_number = 1  # номер следующего чека
+
+
+def print_receipt():
+    global order_number
+    if len(order) == 0:
+        print("Заказ пуст")
+        return
+    print(f"------- ЧЕК № {order_number} -------")
+    for name, price, count in order:
+        print(f"{name} x {count} = {price * count} руб.")
+    total = order_sum()
+    if total >= 500:
+        total = total * 0.9
+        print("Скидка 10 %")
+    print(f"ИТОГО: {total:.2f} руб.")
+    print("Спасибо за покупку!")
+    order.clear()
+    order_number = order_number + 1
+
+
+MENU.append(("Печать чека", print_receipt))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
