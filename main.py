@@ -100,5 +100,20 @@ def show_order_sum():
 MENU.append(("Сумма заказа", show_order_sum))
 
 
+# ===== US-5. К оплате со скидкой =====
+def pay_with_discount():
+    total = order_sum()
+    if total >= 500:
+        discount = total * 0.1
+        print(f"Сумма: {total} руб., скидка 10 %: {discount:.2f} руб.")
+        total = total - discount
+    else:
+        print("Скидка 10 % действует при заказе от 500 руб.")
+    print(f"К оплате: {total:.2f} руб.")
+
+
+MENU.append(("К оплате (со скидкой)", pay_with_discount))
+
+
 # ===== ЗАПУСК: эта строка всегда должна быть последней =====
 start()
